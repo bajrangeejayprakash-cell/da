@@ -5,6 +5,530 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101124">
+
+  <meta name="description" content="Jay Prakash Yadav's portfolio featuring the Bike Road Challenge educational game and its development report.">
+
+  <title>Jay Prakash Yadav | Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #101124;
+      --card: #1a1c35;
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --text: #f5f5ff;
+      --muted: #b9bad0;
+      --border: rgba(255,255,255,.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1080px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(16,17,36,.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 75px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--purple);
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: .95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--purple);
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      color: var(--purple);
+      background: rgba(167,139,250,.08);
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
+      line-height: 1.15;
+      letter-spacing: -2px;
+      max-width: 850px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--purple), var(--blue));
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero p {
+      max-width: 670px;
+      color: var(--muted);
+      margin: 24px 0 30px;
+      font-size: 1.08rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 19px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-align: center;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      opacity: .9;
+    }
+
+    .primary {
+      background: linear-gradient(90deg, var(--purple), var(--blue));
+      color: #101124;
+    }
+
+    .secondary {
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    section {
+      padding: 70px 0;
+      scroll-margin-top: 75px;
+    }
+
+    .section-heading {
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      margin-bottom: 8px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .about-box,
+    .project-card,
+    .education-card,
+    .contact-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--purple);
+    }
+
+    .project-icon {
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+    }
+
+    .project-card h3,
+    .education-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .project-card p,
+    .education-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .project-card .btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--purple);
+      padding: 9px 15px;
+      border-radius: 30px;
+    }
+
+    .contact-box {
+      background: linear-gradient(
+        135deg,
+        rgba(167,139,250,.13),
+        rgba(96,165,250,.09)
+      );
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin: 12px 0 22px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 650px) {
+      nav {
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: .85rem;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 75px 0;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 55px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">JP.</a>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section class="hero container" id="home">
+      <span class="tag">Welcome to my portfolio</span>
+
+      <h1>
+        Hi, I'm <span class="gradient">Jay Prakash Yadav.</span>
+        <br>
+        A student who loves learning.
+      </h1>
+
+      <p>
+        I am learning new digital skills, exploring technology,
+        and turning my ideas into useful projects. This portfolio
+        presents my work, creativity, and learning journey.
+      </p>
+
+      <div class="buttons">
+        <a class="btn primary" href="#projects">
+          Explore My Projects
+        </a>
+
+        <a class="btn secondary" href="#about">
+          About Me
+        </a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>About Me</h2>
+          <p>A little introduction about myself.</p>
+        </div>
+
+        <div class="about-box">
+          <p>
+            Hello! I am Jay Prakash Yadav. I am a student interested
+            in technology, digital tools, and creative problem-solving.
+          </p>
+
+          <p>
+            I enjoy learning through practical work. I am exploring
+            how AI can help me develop ideas, build websites, and
+            create projects that solve real problems.
+          </p>
+
+          <p>
+            My goal is to improve my skills step by step, gain
+            experience, and create better projects in the future.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>My Skills</h2>
+          <p>Skills I am learning and practising.</p>
+        </div>
+
+        <div class="skill-list">
+          <span class="skill">AI Tools</span>
+          <span class="skill">HTML</span>
+          <span class="skill">Web Design</span>
+          <span class="skill">Creative Thinking</span>
+          <span class="skill">Problem-Solving</span>
+          <span class="skill">Research</span>
+          <span class="skill">Planning</span>
+          <span class="skill">Learning New Technology</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>My Projects</h2>
+          <p>Projects created through ideas, learning, and practice.</p>
+        </div>
+
+        <div class="grid">
+
+          <!-- GAME PROJECT -->
+          <article class="project-card">
+            <div class="project-icon">🚲</div>
+
+            <h3>Bike Road Challenge</h3>
+
+            <p>
+              An educational bicycle game about road safety,
+              attention, timing, and accident prevention. Players
+              must avoid other bicycles and make careful decisions
+              to continue riding and achieve a high score.
+            </p>
+
+            <a
+              class="btn primary"
+              href="./bike-road-challenge.html">
+              Play the Game →
+            </a>
+
+            <a
+              class="btn secondary"
+              href="./bike-game-report.html">
+              Read Game Development Report →
+            </a>
+          </article>
+
+          <!-- ASSIGNMENT PROJECT -->
+          <article class="project-card">
+            <div class="project-icon">🌍</div>
+
+            <h3>Hiring International Graduates</h3>
+
+            <p>
+              An assignment about whether employers should sponsor
+              visas for international graduates or hire people who
+              already have the right to work. It explores the issue
+              from different points of view.
+            </p>
+
+            <a
+              class="btn secondary"
+              href="https://docs.google.com/document/d/1dFlnXxKr8jws1zB-L52H5IKnitzj1BwovXaHQnDKqqg/edit?usp=drivesdk"
+              target="_blank"
+              rel="noopener noreferrer">
+              View Assignment →
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Education</h2>
+          <p>My educational journey.</p>
+        </div>
+
+        <div class="education-card">
+          <h3>Student</h3>
+
+          <p>
+            I am continuing my education while developing practical
+            skills through assignments, research, and digital projects.
+          </p>
+
+          <p>
+            <strong>Institution:</strong>
+            Add your school or college name.
+          </p>
+
+          <p>
+            <strong>Course / Level:</strong>
+            Add your current course or level.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+
+        <div class="contact-box">
+          <h2>Let's Connect</h2>
+
+          <p>
+            I am interested in learning new things, exploring
+            technology, and improving my projects. Thank you
+            for visiting my portfolio.
+          </p>
+
+          <a class="btn primary" href="#projects">
+            Explore My Work
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        © <span id="year"></span> Jay Prakash Yadav.
+        Built with learning, creativity, and curiosity.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101124">
   <meta name="description" content="Personal portfolio showcasing my skills, projects, and learning journey.">
   <title>My Portfolio | Jay Prakash Yadav</title>
 
